@@ -1,0 +1,263 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 CourierNewPSMT;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red246\green246\blue246;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c97255\c97255\c97255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 <apex:component controller="HDMSQuoteDetailsEmailCtrl"  access="global" >\
+     <apex:attribute name="quoteNbr" type="String" description="Id of the quote" assignTo="\{!quoteNumber\}"/>\
+\
+    <style>\
+    table\{\
+      font-family: arial, sans-serif;\
+      font-size: 11px;\
+      border-collapse: collapse;\
+      width: 100%;\
+      \
+    \}\
+    .tableborder\{\
+        border: 1px solid #ffffff !important;\
+        padding: 0px;\
+    \}\
+    \
+    td, th \{\
+      border: 0px solid #ffffff;\
+      text-align: left;\
+      padding: 2px;\
+    \}\
+    \
+    <!--tr:nth-child(even) \{\
+      background-color: #dddddd;\
+    \}-->\
+    td.header\{\
+        cursor:pointer;\
+    \}\
+    .center \{\
+      margin-left: 70%; \
+       width:30%;\
+    \}\
+    .ftLines \{\
+        border: 0px solid #EEEEEE;\
+        background-color:#EEEEEE;\
+    \}\
+    .ftTotal \{\
+        border: 1px solid white;\
+        background-color: white;\
+    \}\
+\
+    .summary \{\
+        border: 8px solid #f0f0f0;\
+        background-color:orange ! important;\
+    \}\
+    .tdine \{\
+        background-color:white;\
+    \}\
+    .title\{\
+        border-left: 1px solid;\
+        border-right: 1px solid;\
+    \}\
+    .endtotal\{\
+        width: auto;\
+        margin-right: 0px;\
+        margin-left: auto;\
+        align: right;\
+    \}\
+\
+    \
+    </style>\
+    \
+    <table class="table-responsive">\
+    <table>    \
+       <!-- <thead>\
+             <tr>\
+                 <th colspan="1" width="15%">Floor Type</th>\
+                 <th colspan="1" width="15%">Room Type</th>\
+                 <th colspan="1" width="40%">Description</th>\
+                 <th colspan="1" width="10%">Material</th>\
+                 <th colspan="1" width="10%">Labor</th>\
+                 <th colspan="1" width="10%">Line Total</th>\
+                     \
+             </tr>\
+        </thead> -->\
+        <tbody>\
+            <apex:repeat value="\{!QuoteDetails.floorTypeWrapperList\}" var="item">\
+                <apex:panelGrid columns="1" id="theGrid">\
+                           <thead>\
+             <tr>\
+                 <th colspan="1" width="15%">Floor Type</th>\
+                 <th colspan="1" width="15%">Room Type</th>\
+                 <th colspan="1" width="40%">Description</th>\
+                 <th colspan="1" width="10%">Material</th>\
+                 <th colspan="1" width="10%">Labor</th>\
+                 <th colspan="1" width="10%">Line Total</th>             \
+             </tr>\
+        </thead>\
+                <tr class="ftLines">\
+                    <td class="ftLines" width="15%"><Strong>\{!item.floorType\}</Strong></td>\
+                    <td class="ftLines" width="15%"><Strong>\{!item.roomTypes\}</Strong></td>\
+                    <!--<td><apex:outputText value="\{!item.description\}" escape="false"/></td>-->\
+                    <td class="ftLines" width="40%"><Strong>\{!item.description\}</Strong></td>\
+                    <td class="ftLines" width="10%"><Strong>$\{!item.materialLineItemTotal\}</Strong></td>\
+                    <td class="ftLines" width="10%"><Strong>$\{!item.laborLineItemTotal\}</Strong></td>\
+                    <td class="ftLines" width="10%"><Strong>$\{!item.lineItemTotal\}</Strong></td>\
+                </tr>\
+                </apex:panelGrid>\
+                <br/>\
+                <table >\
+                    <thead>\
+                        <tr class="tdine,ftLines" width="10%">\
+                            <header class="ftLines">\
+                                <h4>Material - \{!item.roomTypes\}</h4>\
+                            </header>\
+                        </tr>\
+                        <tr >\
+                            <!--<th class="tdine" colspan="1" width="5%"></th>-->\
+                            <th colspan="1" width="40%">Description</th>\
+                            <th colspan="1" width="15%">Quantity</th>\
+                            <th colspan="1" width="15%">Unit</th>\
+                            <th colspan="1" width="15%">Unit Price</th>\
+                            <th colspan="1" width="15%">Price</th>\
+                        </tr>\
+                    </thead>\
+                    <tbody>\
+                        <apex:repeat value="\{!item.materialQuoteLineItemList\}" var="item2">\
+                            <tr > \
+                                <!--<td class="tdine" width="10%"></td>-->\
+                                <td width="40%"> <apex:outputText value="\{!item2.Line_Item_Description__c\}" escape="false"/></td>\
+                                <td width="15%">\{!item2.Quantity\}</td>\
+                                <td width="15%">\{!item2.unitOfMeasure__c\}</td>\
+                                <td width="15%">$\{!item2.UnitPrice\}</td>\
+                                <td width="15%">$\{!item2.TotalPrice\}</td>\
+                            </tr>\
+                        </apex:repeat>\
+                        <tr > \
+                            <td class="tdine" colspan="1"></td>\
+                            <td class="tdine" colspan="1"></td>\
+                            <td class="tdine" colspan="1"></td>\
+                            <td colspan="1"><strong>Subtotal:</strong></td>\
+                            <td colspan="1"><strong>$\{!item.materialSubTotal\}</strong></td>\
+                        </tr>\
+                        <tr>\
+                            <td class="tdine" colspan="1"></td>\
+                            <td class="tdine" colspan="1"></td>\
+                            <td class="tdine" colspan="1"></td>\
+                            <td class="tdine"><strong>Tax @ \{!item.materialTaxRate\} %:</strong></td>\
+                            <td class="tdine"><strong>$\{!item.materialTaxAmount\}</strong></td>\
+                        </tr>    \
+                        <tr>\
+                            <td class="tdine" colspan="1"></td>\
+                            <td class="tdine" colspan="1"></td>\
+                            <td class="tdine" colspan="1"></td>\
+                            <td class="ftTotal"><strong>Material Total:</strong></td>\
+                            <td class="ftTotal"><strong>$\{!item.materialLineItemTotal\}</strong></td>\
+                        </tr>\
+                    </tbody>\
+                </table>\
+                <table>\
+                    <thead>\
+                        <tr>\
+                            <header class="ftLines">\
+                                <h4>Labor - \{!item.roomTypes\}</h4>\
+                            </header>\
+                        </tr>\
+                        <tr >\
+                            <th colspan="1" width="40%">Description</th>\
+                            <th colspan="1" width="15%">Quantity</th>\
+                            <th colspan="1" width="15%">Unit</th>\
+                            <th colspan="1" width="15%">Unit Price</th>\
+                            <th colspan="1" width="15%">Price</th>\
+                        </tr>\
+                    </thead>\
+                    <tbody>\
+                        <apex:repeat value="\{!item.laborQuoteLineItemList\}" var="item1">\
+                            <tr > \
+                                <td width="40%"> <apex:outputText value="\{!item1.Line_Item_Description__c\}" escape="false"/></td>\
+                                <td width="15%">\{!item1.Quantity\}</td>\
+                                <td width="15%">\{!item1.unitOfMeasure__c\}</td>\
+                                <td width="15%">$\{!item1.UnitPrice\}</td>\
+                                <td width="15%">$\{!item1.TotalPrice\}</td>\
+                            </tr>\
+                        </apex:repeat>\
+                        <tr > \
+                            <td colspan="1"></td>\
+                            <td colspan="1"></td>\
+                            <td colspan="1"></td>\
+                            <td colspan="1"><Strong>Subtotal:</strong></td>\
+                            <td colspan="1">$<Strong>\{!item.laborSubTotal\}</strong></td>\
+                        </tr>\
+                        <tr>\
+                            <td class="tdine" colspan="1"></td>\
+                            <td class="tdine" colspan="1"></td>\
+                            <td class="tdine" colspan="1"></td>\
+                            <!--<td><Strong>Tax @ \{!item.laborTaxRate\} %: </strong></td>\
+                            <td><Strong>$\{!item.laborTaxAmount\}</strong></td>-->\
+                            \
+                            <td class="tdine"><apex:outputText rendered="\{!If(item.laborTaxRate>0,true,false)\}"><Strong>Tax @ \{!item.laborTaxRate\} %: </strong></apex:outputText></td>\
+                            <td class="tdine"><apex:outputText rendered="\{!If(item.laborTaxRate>0,true,false)\}"><Strong>$\{!item.laborTaxAmount\}</strong></apex:outputText></td>\
+\
+                        </tr>    \
+                        <tr>\
+                            <td colspan="1"></td>\
+                            <td colspan="1"></td>\
+                            <td colspan="1"></td>\
+                            <td class="ftTotal"><Strong>Labor Total:</strong></td>\
+                            <td class="ftTotal"><Strong>$\{!item.laborLineItemTotal\}</strong></td>\
+                        </tr>\
+                    </tbody>\
+                    \
+                </table>\
+               <!-- <hr/> -->\
+               <br/> \
+            </apex:repeat>\
+            <table width="100%"> <!-- class="center; summary"-->\
+                <!--<Strong class="ftLines">ORDER SUMMARY</strong>-->\
+                 <th colspan="2" scope="row" bgcolor="#EEEEEE"><div align="center"><Strong class="ftLines">Order Summary</strong></div></th>\
+            </table >\
+            <table width="100%"> <!-- class="center" -->\
+                <tr>\
+                <!--<td colspan="1"></td>\
+                <td colspan="1"></td>\
+                <td colspan="1"></td>\
+                <td colspan="1"></td>\
+                <td class="ftTotal"><Strong>SubTotal</Strong></td>\
+                <td class="ftTotal"><Strong>$\{!QuoteDetails.subTotal\}</Strong></td>-->\
+                <th width="77%" scope="row"><div align="right"><strong class="ftTotal">SubTotal</strong></div></th>\
+                <td width="23%"><div align="right"><strong class="ftTotal">$\{!QuoteDetails.subTotal\}</strong></div></td>\
+            </tr>\
+            <apex:repeat value="\{!QuoteDetails.quote.QuoteLineItems\}" var="item3">\
+            <tr>\
+                <!--<td colspan="1"></td>\
+                <td colspan="1"></td>\
+                <td colspan="1"></td>\
+                <td colspan="1"></td>-->\
+                <th width="77%" scope="row"><div align="right"><strong class="ftTotal">Credit for Deposit</strong></div></th>\
+                <td width="23%"><div align="right"><strong class="ftTotal">$\{!item3.UnitPrice\}</strong></div></td>\
+                <!--<td class="tdine" width="25%"><Strong>Credit for Deposit/Measure</Strong></td>\
+                <td class="tdine" width="25%"><Strong>$\{!item3.UnitPrice\}</Strong></td>-->\
+            </tr>\
+            </apex:repeat>\
+            <tr>\
+                <!--<td colspan="1"></td>\
+                <td colspan="1"></td>\
+                <td colspan="1"></td>\
+                <td colspan="1"></td>-->\
+                <th width="77%" scope="row"><div align="right"><strong class="ftTotal">Grand Total:</strong></div></th>\
+                <td width="23%"><div align="right"><strong class="ftTotal">$\{!QuoteDetails.grandTotal\}</strong></div></td>\
+                <!--<td><Strong>Grand Total:</Strong></td>\
+                <td><Strong>$\{!QuoteDetails.grandTotal\}</Strong></td>-->\
+            </tr>\
+            <!--<tr>\
+                <td class="tdine" colspan="2"><Strong>This quote expired on <apex:outputText value="\{0, date, MMMM d','  yyyy\}">\
+                      <apex:param value="\{!QuoteDetails.Quote.ExpirationDate\}" /> \
+                      </apex:outputText></Strong></td>\
+            </tr>-->\
+        </table>\
+\
+        </tbody>\
+    </table>    \
+    </table>\
+</apex:component>\
+}
