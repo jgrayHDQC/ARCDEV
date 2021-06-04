@@ -5,8 +5,7 @@
 \margl1440\margr1440\vieww10800\viewh8400\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\f0\fs24 \cf0 <messaging:emailTemplate subject="\{!relatedTo.Title__c\}"  relatedToType="hms_EmailData__c"><!-- recipientType="Lead" -->\
-<!-- recipientType="User" relatedToType="Quote" -->\
+\f0\fs24 \cf0 <messaging:emailTemplate subject="\{!relatedTo.Title__c\}" relatedToType="hms_EmailData__c"> <!-- recipientType="Contact"  -->\
  <messaging:htmlEmailBody >\
 \
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">\
@@ -14,7 +13,7 @@
     <meta charset="utf-8"></meta>\
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"></meta>\
     <base target="_blank"></base>\
-\
+    \
 <head>\
 \
 <c:evfc_EmailStylesMin ></c:evfc_EmailStylesMin> \
@@ -34,26 +33,28 @@ body, table, td, th, .btn-text \{font-family: Helvetica, Arial, sans-serif !impo
 <!-- @begin email body frame, DO NOT REMOVE -->\
     <table style="width: 100%;" lang="en" role="presentation">\
         <!--[if !mso]><!--><tr><!--<![endif]-->\
-      \
             <td class="hide-for-small">&zwnj;</td>\
-            <td id="all">\
+            <td id="all" style="max-width: 700px !important;">\
 <!-- @begin email body interior -->\
 \
-<c:pvfc_Header_01 logoLink="https://www.homedepot.com/services/" titleCopy="Thank you for purchasing new floors -- now get ready for installation!" phoneNum="\{!$Label.HDMSSupportPhoneNumber\}" imgPathFull="\{!$Label.CX_LibraryThankYouPPD\}" imgPathMobile="\{!$Label.CX_LibraryThankYouPPM\}" ></c:pvfc_Header_01>\
+<c:pvfc_Header_01 logoLink="https://www.homedepot.com/services/" titleCopy="Get excited - your flooring quote is ready!" phoneNum="\{!$Label.HDMSSupportPhoneNumber\}" imgPathFull="\{!$Label.CX_LibraryTransactionalQuoteHeroM\}" imgPathMobile="\{!$Label.CX_LibraryTransactionalQuoteHeroM\}" ></c:pvfc_Header_01>\
 \
+<c:pvfc_Greeting_01 custFirstName="\{!relatedTo.CustomerName__c\}" greetingsCopy="Your itemized flooring quote below includes the cost of labor and materials. After your purchase, we'll call to schedule your installation"></c:pvfc_Greeting_01>\
 \
-<c:pvfc_Greeting_01 custFirstName="\{!relatedTo.CustomerName__c\}" greetingsCopy="Now that you've completed your payment, our Authorized Service Provider will reach out to schedule your installation. Please note it takes 24 hours to process your order. After that time, if you would like to make any changes, call your local Home Depot store. We want the process to be as smooth and easy as possible, so we've included some steps to help you prepare your home for installation below."></c:pvfc_Greeting_01>\
+<c:pvfc_QuoteDetails_2col_01 quoteSource="\{!relatedTo.SourceName__c\}" quoteData="\{!relatedTo.TotalAmount__c\}" expDate="\{!relatedTo.ExpirationDate__c\}" timeZone="\{!relatedTo.TimeZone__c\}" floorPlanURL="\{!relatedTo.AltRefUrl__c\}" buttonCopy="Purchase&nbsp;Now" buttonURL="\{!relatedTo.RefURL__c\}" hdmsProductName="\{!relatedTo.ProductName__c\}" ></c:pvfc_QuoteDetails_2col_01> \
 \
-<c:pvfc_ProductReceipt_grid_02 quoteNbr="\{!relatedTo.RefNumber__c\}" measureID="\{!relatedTo.DocumentNo__c\}" ></c:pvfc_ProductReceipt_grid_02>\
+<c:pvfc_QuoteDetails_grid quoteNbr="\{!relatedTo.DocumentNo__c\}"></c:pvfc_QuoteDetails_grid>\
 \
-<c:pvfc_PrepareInstallList_01 image1URL="\{!$Label.CX_LibraryInstall01\}" image1ALT="Carpet" image2URL="\{!$Label.CX_LibraryInstall02\}" image2ALT="Hardwood" image3URL="\{!$Label.CX_LibraryInstall03\}" image3ALT="Tile" ></c:pvfc_PrepareInstallList_01>\
+<c:pvfc_ValueProps_01 ></c:pvfc_ValueProps_01>\
 \
-<c:pvfc_Store_JobDetails_2Col_01 iconImagePath="\{!$Label.CX_LibraryStoreIcon\}" storeName="\{!relatedTo.StoreName__c\}" storeStreet="\{!relatedTo.Street__c\}" storeCity="\{!relatedTo.City__c\}" storeState="\{!relatedTo.State__c\}" storezip="\{!relatedTo.Zipcode__c\}" storephone="\{!relatedTo.RefPhone__c\}"></c:pvfc_Store_JobDetails_2Col_01>\
+<!--Sandhya End Sandhya -->\
+<!--\
+<c:pvfc_CreditOffer_01 hdmsGrandTotal="\{!relatedTo.TotalAmount__c\}" buttonCopy="Apply&nbsp;Now" buttonURL="https://www.homedepot.com/c/Credit_Center" imageURL="\{!$Label.CX_LibrarySpecialFinancingIcon\}" imageALT="Credit Cards" ></c:pvfc_CreditOffer_01>\
+-->\
 \
 <c:pvfc_QuickLinks_02 ql_01_copy="Licenses" ql_01_URL="https://www.homedepot.com/c/SV_HS_Contractor_License_Numbers" ql_02_copy="Unsubscribe" ql_02_URL="http://pages.homedepot.com/HDOptdown?email=\{!relatedTo.ToEmail__c\}&list=HD_SURVEYS&source_id=1361&trans_id=54" ql_03_copy="Home Depot Flooring Installation" ql_03_URL="https://www.homedepot.com/services/c/flooring-installation/660eb1d19?vfrom=global-menu"></c:pvfc_QuickLinks_02>\
 \
 <c:pvfc_Footer_01 ></c:pvfc_Footer_01>\
-\
 \
 \
 <!-- @end email body -->\
@@ -61,4 +62,5 @@ body, table, td, th, .btn-text \{font-family: Helvetica, Arial, sans-serif !impo
 </body>\
 </html>\
 </messaging:htmlEmailBody>\
-</messaging:emailTemplate>}
+</messaging:emailTemplate>\
+<!-- $<c:HDMSCitiDetails value="0" QutId="\{!relatedTo.Id\}"></c:HDMSCitiDetails> -->}

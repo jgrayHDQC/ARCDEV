@@ -5,7 +5,7 @@
 \margl1440\margr1440\vieww10800\viewh8400\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\f0\fs24 \cf0 <messaging:emailTemplate subject="Your Appointment Reminder"  relatedToType="hms_EmailData__c"><!-- recipientType="Lead" -->\
+\f0\fs24 \cf0 <messaging:emailTemplate subject="\{!relatedTo.Title__c\}"  relatedToType="hms_EmailData__c"><!-- recipientType="Lead" -->\
  <messaging:htmlEmailBody >\
 \
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">\
@@ -28,7 +28,7 @@ body, table, td, th, .btn-text \{font-family: Helvetica, Arial, sans-serif !impo
 </style>\
 <![endif]-->\
 \
-<c:evfc_PreviewText_01 previewText="This is your new preview text"></c:evfc_PreviewText_01>\
+<c:evfc_PreviewText_01 previewText="\{!relatedTo.AltString__c\}"></c:evfc_PreviewText_01>\
 \
 <!-- @begin email body frame, DO NOT REMOVE -->\
     <table style="width: 100%;" lang="en" role="presentation">\
@@ -49,11 +49,11 @@ body, table, td, th, .btn-text \{font-family: Helvetica, Arial, sans-serif !impo
 \
 <c:evfc_MeasureCustInfo_2col_01 measureDate="\{!relatedTo.RefDate__c\}" measureAddress="\{!relatedTo.Street__c\}, \{!relatedTo.City__c\}, \{!relatedTo.State__c\} \{!relatedTo.Zipcode__c\}" measureNum="\{!relatedTo.DocumentNo__c\}" orderNum="\{!relatedTo.RefNumber__c\}" measureCost="\{!relatedTo.Amount__c\}" materialType="\{!relatedTo.Name\}" custfirstName="\{!relatedTo.FirstName__c\}" custlastName="\{!relatedTo.LastName__c\}" custemail="\{!relatedTo.ToEmail__c\}" custPhone="\{!relatedTo.PhoneNumber__c\}"></c:evfc_MeasureCustInfo_2col_01>\
 \
-<c:evfc_InterimStoreContact_2Col_01 hdmsPhoneNum="18002488982" hdmsPhoneCopy="1-800-248-8982, Action #1" buttonURL="https://www.homedepot.com/services/public/measures/flooring/" buttonCopy="Add&nbsp;us&nbsp;to&nbsp;your&nbsp;contacts" bodyCopy="Never miss a call or update from your Home Depot service team. Adding us to your contacts ensures our number shows up when your phone rings." iconImagePath="\{!$Label.CX_LibraryStoreIcon\}" storeName="\{!relatedTo.ProductName__c\}" storeStreet="\{!relatedTo.AltString__c\}" storeCity="\{!relatedTo.RefString__c\}" storeState="\{!relatedTo.SourceName__c\}" storezip="\{!relatedTo.TimeZone__c\}" storephone="\{!relatedTo.CustomerName__c\}"></c:evfc_InterimStoreContact_2Col_01>\
+<c:evfc_InterimStoreContact_2Col_01 hdmsPhoneNum="\{!relatedTo.BranchName__c\}" hdmsPhoneCopy="\{!relatedTo.StoreName__c\}" buttonURL="https://www.homedepot.com/services/public/measures/flooring/" buttonCopy="Add&nbsp;us&nbsp;to&nbsp;your&nbsp;contacts" bodyCopy="Never miss a call or update from your Home Depot service team. Adding us to your contacts ensures our number shows up when your phone rings." iconImagePath="\{!$Label.CX_LibraryStoreIcon\}" storeName="\{!relatedTo.ProductName__c\}" storeStreet="\{!relatedTo.AltString__c\}" storeCity="\{!relatedTo.RefString__c\}" storeState="\{!relatedTo.SourceName__c\}" storezip="\{!relatedTo.TimeZone__c\}" storephone="\{!relatedTo.CustomerName__c\}"></c:evfc_InterimStoreContact_2Col_01>\
 \
 <c:pvfc_ValueProps_01 ></c:pvfc_ValueProps_01>\
 \
-<c:evfc_NoProduct_02 iconURL="\{!$Label.CX_LibraryShoppingCartIcon\}" custFirstName="\{!relatedTo.FirstName__c\}" selectionPhoneNum="" buttonCopy="Browse&nbsp;Products&nbsp;Online" buttonURL="http://www.homedepot.com" noProd1URL="\{!$Label.CX_LibraryNoProd01Icon\}" noProd1ALT="Carpet" noProd2URL="\{!$Label.CX_LibraryNoProd02Icon\}" noProd2ALT="Hardwood" noProd3URL="\{!$Label.CX_LibraryNoProd03Icon\}" noProd3ALT="Tile"></c:evfc_NoProduct_02>\
+<c:evfc_NoProduct_02 iconURL="\{!$Label.CX_LibraryShoppingCartIcon\}" custFirstName="\{!relatedTo.FirstName__c\}" phoneNumber="\{!relatedTo.BranchName__c\}" selectionPhoneNum="\{!relatedTo.StoreName__c\}" buttonCopy="Browse&nbsp;Products&nbsp;Online" buttonURL="http://www.homedepot.com" noProd1URL="\{!$Label.CX_LibraryNoProd01Icon\}" noProd1ALT="Carpet" noProd2URL="\{!$Label.CX_LibraryNoProd02Icon\}" noProd2ALT="Hardwood" noProd3URL="\{!$Label.CX_LibraryNoProd03Icon\}" noProd3ALT="Tile"></c:evfc_NoProduct_02>\
 \
 <c:evfc_COVID_01 ></c:evfc_COVID_01>\
 \
